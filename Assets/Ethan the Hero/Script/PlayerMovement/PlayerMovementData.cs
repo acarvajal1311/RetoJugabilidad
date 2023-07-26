@@ -25,7 +25,7 @@ namespace EthanTheHero
 		[Space(20)]
 
 		[Header("Dash")]
-		public float dashPower = 30f;
+		public float dashPower = 15f;
 		public float dashingCoolDown = 1f;
 		public float dashingTime = 0.2f;
 

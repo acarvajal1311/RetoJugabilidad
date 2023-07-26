@@ -26,7 +26,8 @@ namespace EthanTheHero
 		private bool canDash = true;
 		private bool dashButtonPressed;
 
-		//Jump
+		//Jump	
+		public float salto = 10;
 		[HideInInspector] public bool grounded;
 		[HideInInspector] public bool isJumping;
 		private bool jumpButtonPressed;
@@ -154,7 +155,7 @@ namespace EthanTheHero
 			if (jumpButtonPressed && grounded)
 			{
 				isJumping = true;
-				myBody.velocity = new Vector2(myBody.velocity.x, data.jumpHeight);
+				myBody.velocity = new Vector2(myBody.velocity.x, salto);
 			}
 		}
 		#endregion
