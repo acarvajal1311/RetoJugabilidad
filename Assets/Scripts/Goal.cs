@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Goal : MonoBehaviour
 {
-    [SerializeField] int requiredItemCount = 0;
+    [SerializeField] int requiredItemCount = 1;
     [SerializeField] int collectedItemCount = 0;
     [SerializeField] int nextSceneIndex = 0;
 
