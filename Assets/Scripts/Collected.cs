@@ -6,6 +6,8 @@ public class Collected: MonoBehaviour
 {
     AudioSource sonido;
 
+    private bool isCollected = false;
+
     void Start()
     {
         sonido = GetComponent<AudioSource>();
@@ -15,13 +17,15 @@ public class Collected: MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player") && !isCollected)
         {
             sonido.Play();
             GetComponent<SpriteRenderer>().enabled = false;
             //gameObject.transform.GetChild(0).gameObject.SetActive(true);
-            Destroy(gameObject, 0.5f);
-        }
 
+            Goal.Instance.CollectItem();
+            isCollected = true;
+            GetComponent<Collider2D>().enabled = false;
+        }
     }
 }

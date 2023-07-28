@@ -5,14 +5,25 @@ using UnityEngine.SceneManagement;
 
 public class Goal : MonoBehaviour
 {
-    [SerializeField] int requiredItemCount = 1;
-    [SerializeField] int collectedItemCount = 0;
-    [SerializeField] int nextSceneIndex = 0;
+    public static Goal Instance { get; private set; }  
+    
+    [SerializeField] int totalItemCount = 0;
+    private int collectedItemCount = 0;
+    private int currentSceneIndex;
 
+    private void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+        else
+            Destroy(gameObject);
+
+        currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+    }
     public void CollectItem()
     {
         collectedItemCount++;
-        if (collectedItemCount >= requiredItemCount)
+        if (collectedItemCount >= totalItemCount )
         {
             SceneChanger();
         }
@@ -20,6 +31,18 @@ public class Goal : MonoBehaviour
 
     private void SceneChanger()
     {
-        SceneManager.LoadScene(nextSceneIndex);
+        if (currentSceneIndex == 0)
+        {
+            SceneManager.LoadScene(3);
+        }
+        else if (currentSceneIndex < SceneManager.sceneCountInBuildSettings - 1) 
+        {
+            SceneManager.LoadScene(currentSceneIndex + 1);
+        }
+        else
+        {
+            SceneManager.LoadScene(0);
+        }
+
     }
 }
